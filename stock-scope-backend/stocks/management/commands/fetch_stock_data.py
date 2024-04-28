@@ -12,25 +12,33 @@ class Command(BaseCommand):
   def handle(self, *args, **options):
     symbols = options['symbols'].split(',') if options['symbols'] else ['AAPL', 'MSFT', 'GOOGL']
     data = yf.download(symbols, period="1mo", interval="1d")
-
-    print(data.head())
-    print(data.columns)
     
+    # Check if DataFrame has MultiIndex Columns and adjust accordingly
     if isinstance(data.columns, pd.MultiIndex):
-      data.columns = data.columns.map('_'.join)  # Flattens MultiIndex to single index
+      data.columns = data.columns.map('_'.join)
 
     for symbol in symbols:
       stock, _ = Stock.objects.get_or_create(symbol=symbol)
-      for date, row in data[symbol].iterrows():
-        HistoricalData.objects.update_or_create(
-          stock=stock,
-          date=date,
-          defaults={
-            'open_price': row['Open'],
-            'high_price': row['High'],
-            'low_price': row['Low'],
-            'close_price': row['Close'],
-            'volume': row['Volume']
+      for date, row in data.iterrows():
+          defaults = {
+            'open_price': row.get(f'Open_{symbol}', 0),
+            'high_price': row.get(f'High_{symbol}', 0),
+            'low_price': row.get(f'Low_{symbol}', 0),
+            'close_price': row.get(f'Close_{symbol}', 0),
+            'volume': row.get(f'Volume_{symbol}', 0),
+            'adjusted_close': row.get(f'Adj Close_{symbol}', None)
           }
-        )
+
+          print(f"Updating {symbol} on {date} with: {defaults}")
+          
+          try:
+            HistoricalData.objects.update_or_create(
+              stock=stock,
+              date=date,
+              defaults=defaults
+            )
+          except IntegrityError as e:
+            self.stdout.write(self.style.ERROR(f'Failed to update database for {symbol} on {date}: {str(e)}'))
+            print(f"Failed to update {symbol} on {date} with: {defaults}")
+            
     self.stdout.write(self.style.SUCCESS('Successfully fetched and updated stock data'))
