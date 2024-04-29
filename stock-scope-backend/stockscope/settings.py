@@ -25,10 +25,14 @@ SECRET_KEY = 'django-insecure-tw8*e2rg4rxww9fx^2mhn_qj6mlg9$jzrda9*l4+&&p6x)op$$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = []
 
 
 # Application definition
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
 INSTALLED_APPS = [
     'django.contrib.admin',

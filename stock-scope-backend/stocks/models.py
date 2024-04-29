@@ -25,7 +25,7 @@ class HistoricalData(models.Model):
     ordering = ['-date']
 
   def __str__(self):
-    return f"{self.stock.symbol} on {self.data}"
+    return f"{self.stock.symbol} on {self.date}"
 
 class Prediction(models.Model):
   stock = models.ForeignKey(Stock, related_name='predictions', on_delete=models.CASCADE)
