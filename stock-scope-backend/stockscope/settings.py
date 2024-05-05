@@ -25,9 +25,26 @@ SECRET_KEY = 'django-insecure-tw8*e2rg4rxww9fx^2mhn_qj6mlg9$jzrda9*l4+&&p6x)op$$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'celery': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    }
+}
+
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -41,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'stocks'
 ]
 
