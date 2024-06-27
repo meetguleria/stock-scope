@@ -1,4 +1,3 @@
-```markdown
 # Stock Scope
 
 ## Project Overview
