@@ -15,3 +15,4 @@ plots/
 
 # Ignore Jupyter notebook checkpoints
 notebooks/.ipynb_checkpoints/
+backend/notebooks/.ipynb_checkpoints/
