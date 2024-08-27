@@ -1,0 +1,17 @@
+# Ignore model files
+models/
+*.keras
+*.pkl
+
+# Ignore environment files
+env/
+venv/
+*.env
+
+# Ignore data files
+data/
+plots/
+
+
+# Ignore Jupyter notebook checkpoints
+notebooks/.ipynb_checkpoints/
