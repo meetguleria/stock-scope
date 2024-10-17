@@ -1,0 +1,83 @@
+# Ignore data folder
+data/
+
+# Ignore models folder (you don't want to push large model files)
+models/
+
+# Ignore Go compiled binaries and cache
+bin/
+*.exe
+*.out
+*.o
+*.so
+*.a
+
+# Ignore Go modules cache
+/pkg/mod/
+/vendor/
+
+# Ignore Go testing-related files
+*.test
+
+# Ignore environment variables and secret keys
+.env
+*.key
+*.pem
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.log
+
+# Ignore Python bytecode and cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Ignore Jupyter Notebook checkpoints and CSV files
+notebooks/*.csv
+notebooks/.ipynb_checkpoints/
+
+# Ignore IDE and editor settings (VS Code, JetBrains IDEs, etc.)
+.vscode/
+.idea/
+*.swp
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore Node.js dependencies (if applicable for frontend)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Ignore any build artifacts or temporary frontend files
+frontend/build/
+frontend/dist/
+frontend/.env
+frontend/*.log
+
+# Ignore temporary or generated files
+*.bak
+*.old
+*.orig
+*.save
+
+# Ignore docker files if using docker
+docker-compose.override.yml
+
+# Go race detector output
+*.trace
+*.prof
+
+# Ignore debugging artifacts
+debug/
+trace.out
+
+# Ignore large or unnecessary datasets from the root directory
+*.tar.gz
+*.zip
+
