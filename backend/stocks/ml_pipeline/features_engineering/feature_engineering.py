@@ -3,7 +3,6 @@ import numpy as np
 import logging
 
 def add_close_price_features(df):
-    """Add feature engineering to the DataFrame based on Close prices."""
     df['Close'] = pd.to_numeric(df['Close'], errors='coerce')
     df.dropna(subset=['Close'], inplace=True)
     df.sort_values('Date', inplace=True)
@@ -78,7 +77,6 @@ def add_close_price_features(df):
     return df
 
 def apply_feature_engineering_to_stock_data(stock_symbol, df):
-    """Apply the feature engineering pipeline to the stock data."""
     logging.info(f"Applying feature engineering for {stock_symbol}")
     df_with_features = add_close_price_features(df)
     logging.info(f"Feature engineering complete for {stock_symbol}")
