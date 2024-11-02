@@ -1,4 +1,3 @@
-# stocks/utils.py
 import os
 import logging
 import yfinance as yf

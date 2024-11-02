@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 import logging
 
 def add_close_price_features(df):
